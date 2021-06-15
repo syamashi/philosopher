@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:49:01 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 09:55:36 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 12:22:15 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <stdbool.h>
 
 #define	USAARG	"[usage]: ./philo <philos> <die> <eat> <sleep> (<must>)"
-#define	USAVAL	"[usage]: <philos> <= 200 && <others> >= 60ms && <must> > 0"
+#define	USAVAL	"[usage]: <philos> 200 people or less, <must> more than 0, and <others> 60ms or more"
 #define EMALLOC "malloc() failed"
 #define EMUTEX "pthread_mutex_init() failed"
 

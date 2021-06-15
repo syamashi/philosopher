@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:48:41 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 11:43:13 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 12:24:57 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,9 @@
 
 int	all_free(t_philo *ph)
 {
-	int	i;
-
-	i = -1;
-	while (++i < ph->number_of_philosophers)
-	{
-		pthread_mutex_destroy(&ph->fork[i]);
-	}
-	pthread_mutex_destroy(&ph->died);
-	pthread_mutex_destroy(&ph->eat);
 	free(ph->men);
 	free(ph->fork);
-	return (1);
+	return (0);
 }
 
 void	ph_def(t_philo *ph)
@@ -39,6 +30,7 @@ void	ph_def(t_philo *ph)
 int main(int argc, char *argv[])
 {
 	t_philo ph;
+	int	i;
 
 	ph_def(&ph);
 	if (ph_init_arg(argc, argv, &ph))
@@ -48,6 +40,13 @@ int main(int argc, char *argv[])
 	if (ph_init_eat(&ph))
 		return (all_free(&ph));
 	ph_launch(&ph);
+	i = -1;
+	while (++i < ph.number_of_philosophers)
+	{
+		pthread_mutex_destroy(&ph.fork[i]);
+	}
+	pthread_mutex_destroy(&ph.died);
+	pthread_mutex_destroy(&ph.eat);
 	all_free(&ph);
 	return (0);
 }
