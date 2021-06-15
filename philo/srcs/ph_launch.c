@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:27:19 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 13:14:16 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:20:49 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ph_work_eat(t_man *man)
 
 void	*ph_work(void *p)
 {
-	t_man *man;
+	t_man	*man;
 
 	man = p;
 	man->lasteat = get_mtime();

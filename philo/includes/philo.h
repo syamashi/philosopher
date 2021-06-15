@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:49:01 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 12:57:14 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:17:58 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ typedef struct s_man
 	int				time_to_sleep;
 	int				number_of_times_each_philosopher_must_eat;
 	bool			is_must_eat;
-	int 			eat_cnt;
+	int				eat_cnt;
 	pthread_mutex_t	*eat;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
 	pthread_mutex_t	*died;
 	pthread_t		thread;
 	bool			*fin;
-	int				*ate_cnt; // eat_cntがmustと合致したら1回だけ加算
+	int				*ate_cnt;
 	long long		lasteat;
 	int				id;
 }	t_man;
