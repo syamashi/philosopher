@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:27:19 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 12:13:25 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 12:30:23 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	ph_work_fork(t_man *man)
 
 int	ph_work_eat(t_man *man)
 {
+	ph_pout(man, PEAT);
 	++man->eat_cnt;
 	if (man->is_must_eat &&
 	man->eat_cnt == man->number_of_times_each_philosopher_must_eat)
@@ -71,7 +72,6 @@ int	ph_work_eat(t_man *man)
 		*man->fin = true;
 	pthread_mutex_unlock(man->died);
 	man->lasteat = get_mtime();
-	ph_pout(man, PEAT);
 	ph_wait(man, man->time_to_eat);
 	pthread_mutex_unlock(man->right);
 	pthread_mutex_unlock(man->left);
