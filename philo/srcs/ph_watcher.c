@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 09:48:58 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 11:19:35 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:15:14 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ph_watcher(void *p)
 {
-	int	i;
-	t_philo *ph;
+	int		i;
+	t_philo	*ph;
 
 	ph = p;
 	while (!ph->fin)
@@ -24,7 +24,7 @@ void	*ph_watcher(void *p)
 		while (++i < ph->number_of_philosophers)
 		{
 			if (!ph->men[i].lasteat)
-				continue;
+				continue ;
 			if (ph->men[i].time_to_die <= get_mtime() - ph->men[i].lasteat)
 			{
 				ph_pout(&ph->men[i], PDIED);

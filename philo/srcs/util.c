@@ -6,15 +6,21 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:07:31 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 09:01:11 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:11:54 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	ft_isdigit(int c)
+static void	ft_preparse(char **str, int *n)
 {
-	return (c >= '0' && c <= '9');
+	*n = 1;
+	while (**str == ' ' || (**str >= 11 && **str <= 15))
+		++*str;
+	if (**str == '-')
+		*n = -1;
+	if (**str == '+' || **str == '-')
+		++*str;
 }
 
 int	ft_atoi(char *nptr)
@@ -27,13 +33,9 @@ int	ft_atoi(char *nptr)
 	if (!nptr)
 		return (0);
 	str = (char *)nptr;
-	while (*str == ' ' || (*str >= 11 && *str <= 15))
-		str++;
-	n = (*str == '-') ? -1 : 1;
-	if (*str == '+' || *str == '-')
-		str++;
+	ft_preparse(&str, &n);
 	m = 0;
-	while (ft_isdigit(*str))
+	while (*str >= '0' && *str <= '9')
 	{
 		num = (*str++ - '0');
 		if ((m >= 922337203685477580 && num > 7) || m >= 922337203685477581)
@@ -51,7 +53,7 @@ int	ft_error(char *mes)
 	return (1);
 }
 
-long long	get_mtime()
+long long	get_mtime(void)
 {
 	struct timeval	time;
 
@@ -63,7 +65,7 @@ int	ph_pout(t_man *man, char *mes)
 {
 	pthread_mutex_lock(man->died);
 	if (!*man->fin)
-	printf("%lld %d %s\n", get_mtime(), man->id, mes);
+		printf("%lld %d %s\n", get_mtime(), man->id, mes);
 	pthread_mutex_unlock(man->died);
 	return (0);
 }

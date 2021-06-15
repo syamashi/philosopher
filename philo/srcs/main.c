@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:48:41 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 12:24:57 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:14:37 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	ph_def(t_philo *ph)
 	ph->ate_cnt = 0;
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_philo ph;
-	int	i;
+	t_philo	ph;
+	int		i;
 
 	ph_def(&ph);
 	if (ph_init_arg(argc, argv, &ph))

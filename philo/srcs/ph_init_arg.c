@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:05:07 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 12:22:38 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:13:22 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ph_init_man(t_man *man, int argc, char *argv[])
 	}
 }
 
-int ph_solo(t_man *man)
+int	ph_solo(t_man *man)
 {
 	long long	start;
 
@@ -61,7 +61,7 @@ int ph_solo(t_man *man)
 
 int	ph_init_arg(int argc, char *argv[], t_philo *ph)
 {
-	int i;
+	int		i;
 	t_man	man;
 
 	if (argc != 5 && argc != 6)
@@ -72,7 +72,7 @@ int	ph_init_arg(int argc, char *argv[], t_philo *ph)
 		return (ft_error(USAVAL));
 	if (ph->number_of_philosophers == 1)
 		exit(ph_solo(&man));
-	ph->men = (t_man*)malloc(sizeof(t_man) * ph->number_of_philosophers);
+	ph->men = (t_man *)malloc(sizeof(t_man) * ph->number_of_philosophers);
 	if (!ph->men)
 		return (ft_error(EMALLOC));
 	i = -1;
