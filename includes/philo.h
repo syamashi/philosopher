@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:49:01 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 07:40:08 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 09:55:36 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #include <stdbool.h>
 
 #define	USAARG	"[usage]: ./philo <philos> <die> <eat> <sleep> (<must>)"
-#define	USAVAL	"[usage]: <philos> < 201 && <others> > 60ms && <must> > 0"
+#define	USAVAL	"[usage]: <philos> <= 200 && <others> >= 60ms && <must> > 0"
 #define EMALLOC "malloc() failed"
 #define EMUTEX "pthread_mutex_init() failed"
 
@@ -39,7 +39,7 @@ typedef struct s_man
 	int	time_to_eat;
 	int	time_to_sleep;
 	int number_of_times_each_philosopher_must_eat;
-	bool	must_eat;
+	bool	is_must_eat;
 	int eat_cnt;
 	pthread_mutex_t	*eat;
 	pthread_mutex_t	*left;
@@ -60,6 +60,7 @@ typedef struct s_philo
 	pthread_mutex_t	eat; // ate_cnt
 	pthread_mutex_t	died;
 	bool	fin; // if someone death , or all philo fill eat cnt.
+	pthread_t	watcher;
 	int	ate_cnt;
 }	t_philo;
 
@@ -67,6 +68,8 @@ int	ph_init_arg(int argc, char *argv[], t_philo *ph);
 int	ph_init_fork(t_philo *ph);
 int	ph_init_eat(t_philo *ph);
 void	ph_launch(t_philo *ph);
+void	*ph_watcher(void *p);
+
 /*
 ** util
 */

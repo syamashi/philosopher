@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:27:19 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 09:16:17 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 12:13:25 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,20 @@ void	ph_wait(t_man *man, int wait_time)
 int	ph_work_fork(t_man *man)
 {
 	if (man->id % 2)
-		pthread_mutex_lock(man->right);
-	else
 		pthread_mutex_lock(man->left);
+	else
+	{
+		usleep(200);
+		pthread_mutex_lock(man->right);
+	}
 	ph_pout(man, PFORK);
 	if (man->id % 2)
-		pthread_mutex_lock(man->left);
-	else
+	{
+		usleep(200);
 		pthread_mutex_lock(man->right);
+	}
+	else
+		pthread_mutex_lock(man->left);
 	ph_pout(man, PFORK);
 	return (0);
 }
@@ -53,7 +59,7 @@ int	ph_work_fork(t_man *man)
 int	ph_work_eat(t_man *man)
 {
 	++man->eat_cnt;
-	if (man->must_eat &&
+	if (man->is_must_eat &&
 	man->eat_cnt == man->number_of_times_each_philosopher_must_eat)
 	{
 		pthread_mutex_lock(man->eat);
@@ -61,7 +67,7 @@ int	ph_work_eat(t_man *man)
 		pthread_mutex_unlock(man->eat);
 	}
 	pthread_mutex_lock(man->died);
-	if (*man->ate_cnt == man->number_of_philosophers)
+	if (*(man->ate_cnt) == man->number_of_philosophers)
 		*man->fin = true;
 	pthread_mutex_unlock(man->died);
 	man->lasteat = get_mtime();
@@ -81,8 +87,9 @@ void	*ph_work(void *p)
 	{
 		ph_work_fork(man);
 		ph_work_eat(man);
-		ph_pout(man, PTHINK);
+		ph_pout(man, PSLEEP);
 		ph_wait(man, man->time_to_sleep);
+		ph_pout(man, PTHINK);
 	}
 	return (NULL);
 }
@@ -96,9 +103,11 @@ void	ph_launch(t_philo *ph)
 	{
 		pthread_create(&ph->men[i].thread, NULL, &ph_work, (void *)&ph->men[i]);
 	}
+	pthread_create(&ph->watcher, NULL, &ph_watcher, (void *)ph);
 	i = -1;
 	while (++i < ph->number_of_philosophers)
 	{
 		pthread_join(ph->men[i].thread, NULL);
 	}
+	pthread_join(ph->watcher, NULL);
 }

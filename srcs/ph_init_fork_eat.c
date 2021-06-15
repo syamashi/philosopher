@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:06:07 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 09:02:21 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 11:43:28 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	ph_init_eat(t_philo *ph)
 	i = -1;
 	if (pthread_mutex_init(&ph->eat, NULL))
 		return (ft_error(EMUTEX));
+	ph->ate_cnt = 0;
 	while (++i < ph->number_of_philosophers)
 	{
 		ph->men[i].ate_cnt = &ph->ate_cnt;

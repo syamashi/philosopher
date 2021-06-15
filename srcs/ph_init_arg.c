@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:05:07 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 07:28:38 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 11:43:09 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	input_check(t_man *man, int num)
 		return (1);
 	if (man->time_to_sleep < 60)
 		return (1);
-	if (man->must_eat && man->number_of_times_each_philosopher_must_eat < 1)
+	if (man->is_must_eat && man->number_of_times_each_philosopher_must_eat < 1)
 		return (1);
 	return (0);
 }
@@ -35,7 +35,7 @@ void	ph_init_man(t_man *man, int argc, char *argv[])
 	man->id = 0;
 	man->lasteat = 0;
 	man->left = NULL;
-	man->must_eat = false;
+	man->is_must_eat = false;
 	man->number_of_times_each_philosopher_must_eat = 0;
 	man->right = NULL;
 	man->number_of_philosophers = ft_atoi(argv[1]);
@@ -44,7 +44,7 @@ void	ph_init_man(t_man *man, int argc, char *argv[])
 	man->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
 	{
-		man->must_eat = true;
+		man->is_must_eat = true;
 		man->number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
 	}
 }
