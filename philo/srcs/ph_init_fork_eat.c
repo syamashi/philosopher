@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:06:07 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 12:57:45 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:25:02 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ph_init_fork(t_philo *ph)
 	while (++i < ph->number_of_philosophers)
 	{
 		ph->men[i].left = &ph->fork[i];
-		ph->men[i].right = &ph->fork[(i - 1 + ph->number_of_philosophers)\
-		% ph->number_of_philosophers];
+		ph->men[i].right = &ph->fork\
+		[(i - 1 + ph->number_of_philosophers) % ph->number_of_philosophers];
 		ph->men[i].died = &ph->died;
 	}
 	return (0);
