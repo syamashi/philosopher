@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:06:07 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 13:25:02 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/15 13:26:30 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	ph_init_eat(t_philo *ph)
 int	ph_init_fork(t_philo *ph)
 {
 	int	i;
+	int	people;
 
+	people = ph->number_of_philosophers;
 	if (pthread_mutex_init(&ph->died, NULL))
 		return (ft_error(EMUTEX));
 	ph->fork = (pthread_mutex_t *)
@@ -45,11 +47,10 @@ int	ph_init_fork(t_philo *ph)
 			return (ft_error(EMUTEX));
 	}
 	i = -1;
-	while (++i < ph->number_of_philosophers)
+	while (++i < people)
 	{
 		ph->men[i].left = &ph->fork[i];
-		ph->men[i].right = &ph->fork\
-		[(i - 1 + ph->number_of_philosophers) % ph->number_of_philosophers];
+		ph->men[i].right = &ph->fork[(i - 1 + people) % people];
 		ph->men[i].died = &ph->died;
 	}
 	return (0);
