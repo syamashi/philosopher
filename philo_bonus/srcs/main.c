@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:48:41 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:05:57 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 12:04:45 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	all_free(t_philo *ph)
 {
 	free(ph->men);
-	return (0);
+	return (1);
 }
 
 void	ph_sem_close(t_philo *ph)
@@ -56,7 +56,10 @@ int	main(int argc, char *argv[])
 	if (ph_init_sem(&ph))
 		return (all_free(&ph));
 	if (ph_launch(&ph))
+	{
+		ph_sem_close(&ph);
 		return (all_free(&ph));
+	}
 	ph_sem_close(&ph);
 	all_free(&ph);
 	return (0);

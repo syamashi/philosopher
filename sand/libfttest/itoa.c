@@ -14,9 +14,13 @@ static int	intlen(long n)
 		n = -n;
 		++len;
 	}
-	++len;
-	while (n /= 10)
+	while (1)
+	{
 		++len;
+		n /= 10;
+		if (!n)
+			break ;
+	}
 	return (len);
 }
 
@@ -37,10 +41,14 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 		m = -m;
 	}
-	i = len - 1;
-	str[i] = m % 10 + '0';
-	while (m /= 10)
-		str[--i] = m % 10 + '0';
+	i = len;
+	while (--i >= 0)
+	{
+		str[i] = m % 10 + '0';
+		m /= 10;
+		if (!m)
+			break ;
+	}
 	str[len] = '\0';
 	return (str);
 }

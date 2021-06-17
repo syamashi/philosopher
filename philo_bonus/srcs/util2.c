@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 11:28:08 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:42:18 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 11:56:37 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ static int	intlen(long n)
 		n = -n;
 		++len;
 	}
-	++len;
-	while (n /= 10)
+	while (1)
+	{
 		++len;
+		n /= 10;
+		if (!n)
+			break ;
+	}
 	return (len);
 }
 
@@ -47,10 +51,14 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 		m = -m;
 	}
-	i = len - 1;
-	str[i] = m % 10 + '0';
-	while (m /= 10)
-		str[--i] = m % 10 + '0';
+	i = len;
+	while (--i >= 0)
+	{
+		str[i] = m % 10 + '0';
+		m /= 10;
+		if (!m)
+			break ;
+	}
 	str[len] = '\0';
 	return (str);
 }
@@ -76,7 +84,7 @@ char	*ft_strdup(const char *str)
 	if (!str)
 		return (NULL);
 	ssz = ft_strlen(str);
-	copy = malloc(sizeof(char) * (ssz + 1))
+	copy = malloc(sizeof(char) * (ssz + 1));
 	if (!copy)
 		return (NULL);
 	n = 0;
