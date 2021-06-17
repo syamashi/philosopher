@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:47:08 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:32:59 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 12:07:42 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ph_launch_fork_philos(t_philo *ph)
 		if (ph->pid[i] == 0)
 		{
 			pthread_create(&ph->men[i].thread, NULL, &ph_watcher,\
-			(void *)&ph->men[i]);
+				(void *)&ph->men[i]);
 			ph_work(&ph->men[i]);
 			pthread_join(ph->men[i].thread, NULL);
 			exit(0);

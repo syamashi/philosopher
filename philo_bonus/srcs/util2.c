@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 11:28:08 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:56:37 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 12:08:05 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	intlen(long n)
 {
-	int len;
+	int	len;
 
 	if (n == 0)
 		return (1);
@@ -42,7 +42,7 @@ char	*ft_itoa(int n)
 	int		i;
 
 	len = intlen(n);
-	str = (char*)malloc(len + 1);
+	str = (char *)malloc(len + 1);
 	if (!str)
 		return (NULL);
 	m = n;
