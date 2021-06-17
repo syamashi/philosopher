@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:49:33 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 12:26:30 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 11:33:23 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	*ph_watcher(void *p)
 				continue ;
 			if (man->time_to_die <= get_mtime() - man->lasteat)
 			{
-				ph_pout_died(man, PDIED);
+				ph_pout(man, PDIED);
+				sem_wait(man->pout);
+				exit(0);
 			}
 		}
 		usleep(200);

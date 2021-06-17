@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:47:08 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 12:26:38 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 12:26:34 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	ph_wait(t_man *man, int wait_time)
 		if (man->time_to_die <= time - man->lasteat)
 		{
 			ph_pout_died(man, PDIED);
+			sem_wait(man->pout);
+			exit(0);
 		}
 		if (time >= start + wait_time)
 			return ;
