@@ -30,9 +30,7 @@ int main()
 	pid_t pid;
 	int status;
 	pthread_t thread;
-	int keep[1000];
-	for(int i=0; i<1000; ++i)
-		keep[i] = i;
+
 	sem_unlink("/aaa");
 	sem = sem_open("/aaa", O_CREAT, 0600, 1); // "/" から始まれば名前付きsem。同じ名前で共有できる。
 	sem2 = sem;
@@ -40,16 +38,12 @@ int main()
 	pid = fork();
 	if (pid == 0)
 	{
-		for(int i=0; i<20; ++i)
-			printf("keep[%d]:%d\n", i, keep[i]);
 		pthread_create(&thread, NULL, (void *)&func, sem2);
 //		sem_post(sem);
 		pthread_join(thread, NULL);
 		exit(0);
 	}
 	int microsecond = 1.5 * 1000000;
-	for(int i=0; i<20; ++i)
-		printf("keep[%d]:%d\n", i, keep[i]);
 	for (int i=0; i<2; ++i){
 		usleep(microsecond);
 		sem_post(sem);
