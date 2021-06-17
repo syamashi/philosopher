@@ -6,26 +6,26 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:49:01 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 10:54:08 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 11:47:32 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <stdbool.h>
-#include <semaphore.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <fcntl.h>
-#include <signal.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <stdbool.h>
+# include <semaphore.h>
+# include <sys/time.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
+# include <fcntl.h>
+# include <signal.h>
 
 # define	USAARG	"[usage]: ./philo <philos> <die> <eat> <sleep> (<must>)"
 # define	USAVAL	"[usage]: <philos> 200 people or less, <must> more than 0\
@@ -49,7 +49,7 @@ typedef struct s_man
 	int				id;
 	sem_t			*fork;
 	sem_t			*eat;
-	sem_t			*pout; // = 1. 誰かが死んだら出さない。
+	sem_t			*pout;
 	pthread_t		thread;
 	long long		lasteat;
 }	t_man;
@@ -61,8 +61,8 @@ typedef struct s_philo
 	bool			is_must_eat;
 	t_man			*men;
 	int				eat_cnt[210];
-	sem_t			*pout; // = 1. 誰かが死んだら出さない。
-	pid_t 			pid[210];
+	sem_t			*pout;
+	pid_t			pid[210];
 	pid_t			pid_watcher;
 	pthread_t		eat_watcher;
 }	t_philo;

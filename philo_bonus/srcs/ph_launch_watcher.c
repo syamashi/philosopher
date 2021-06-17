@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/17 10:49:33 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:05:24 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 11:33:23 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ph_eat_watcher(t_philo *ph)
 	exit(0);
 }
 
-int ph_launch_eat_watcher(t_philo *ph)
+int	ph_launch_eat_watcher(t_philo *ph)
 {
 	ph->pid_watcher = fork();
 	if (ph->pid_watcher < 0)

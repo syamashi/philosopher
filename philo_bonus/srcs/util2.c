@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/16 11:28:08 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:05:10 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 11:42:18 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ static int	intlen(long n)
 {
 	int len;
 
+	if (n == 0)
+		return (1);
 	len = 0;
 	if (n < 0)
 	{
 		n = -n;
-		len++;
+		++len;
 	}
-	while (n)
-	{
-		n /= 10;
-		len++;
-	}
+	++len;
+	while (n /= 10)
+		++len;
 	return (len);
 }
 
@@ -37,8 +37,9 @@ char	*ft_itoa(int n)
 	long	m;
 	int		i;
 
-	len = (n == 0) ? 1 : intlen(n);
-	if (!(str = (char*)malloc(len + 1)))
+	len = intlen(n);
+	str = (char*)malloc(len + 1);
+	if (!str)
 		return (NULL);
 	m = n;
 	if (n < 0)
@@ -46,14 +47,10 @@ char	*ft_itoa(int n)
 		str[0] = '-';
 		m = -m;
 	}
-	if (n == 0)
-		str[0] = '0';
-	i = len;
-	while (m)
-	{
+	i = len - 1;
+	str[i] = m % 10 + '0';
+	while (m /= 10)
 		str[--i] = m % 10 + '0';
-		m /= 10;
-	}
 	str[len] = '\0';
 	return (str);
 }
@@ -79,7 +76,8 @@ char	*ft_strdup(const char *str)
 	if (!str)
 		return (NULL);
 	ssz = ft_strlen(str);
-	if (!(copy = malloc(sizeof(char) * (ssz + 1))))
+	copy = malloc(sizeof(char) * (ssz + 1))
+	if (!copy)
 		return (NULL);
 	n = 0;
 	while (*str)
@@ -100,7 +98,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (ft_strdup(s2));
 	if (!s2)
 		return (ft_strdup(s1));
-	if (!(src = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+	src = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!src)
 		return (NULL);
 	i = 0;
 	while (*s1)

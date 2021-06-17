@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 07:27:19 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:05:17 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/17 11:31:38 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ph_kill_all(t_philo *ph)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < ph->number_of_philosophers)
