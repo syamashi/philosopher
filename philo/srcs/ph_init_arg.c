@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:05:07 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/18 10:42:21 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/18 10:43:57 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	ph_init_man(t_philo *ph)
 	man.time_to_eat = ph->time_to_eat;
 	man.time_to_sleep = ph->time_to_sleep;
 	man.is_must_eat = ph->is_must_eat;
-	man.number_of_times_each_philosopher_must_eat\
-	= ph->number_of_times_each_philosopher_must_eat;
+	man.number_of_times_each_philosopher_must_eat =
+	ph->number_of_times_each_philosopher_must_eat;
 	i = -1;
 	while (++i < ph->number_of_philosophers)
 	{
