@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:49:01 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/15 13:17:58 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/18 10:08:28 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ typedef struct s_man
 typedef struct s_philo
 {
 	int				number_of_philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				number_of_times_each_philosopher_must_eat;
+	bool			is_must_eat;
 	t_man			*men;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	eat;
@@ -68,6 +73,7 @@ typedef struct s_philo
 int			ph_init_arg(int argc, char *argv[], t_philo *ph);
 int			ph_init_fork(t_philo *ph);
 int			ph_init_eat(t_philo *ph);
+int			ph_init_man(t_philo *ph);
 void		ph_launch(t_philo *ph);
 void		*ph_watcher(void *p);
 

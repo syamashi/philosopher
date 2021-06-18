@@ -10,7 +10,6 @@ void *func_thread(void *p) {
 
   printf("start %d\n", *(int*)p);
 
-	
   int i=0;
   for(i=0; i < 10000; i++){
     pthread_mutex_lock(&mutex);

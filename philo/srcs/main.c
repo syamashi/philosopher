@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:48:41 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 12:18:38 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/18 10:13:16 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ void	ph_def(t_philo *ph)
 	ph->fin = false;
 	ph->fork = NULL;
 	ph->men = NULL;
+	ph->number_of_philosophers = 0;
+	ph->time_to_die = 0;
+	ph->time_to_eat = 0;
+	ph->time_to_sleep = 0;
+	ph->number_of_times_each_philosopher_must_eat = 0;
+	ph->is_must_eat = false;
 	ph->ate_cnt = 0;
 }
 
@@ -46,6 +52,8 @@ int	main(int argc, char *argv[])
 
 	ph_def(&ph);
 	if (ph_init_arg(argc, argv, &ph))
+		return (0);
+	if (ph_init_man(&ph))
 		return (all_free(&ph));
 	if (ph_init_fork(&ph))
 		return (all_free(&ph));
