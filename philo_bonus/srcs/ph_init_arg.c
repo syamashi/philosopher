@@ -6,7 +6,7 @@
 /*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 12:05:07 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 11:07:08 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/18 11:12:11 by syamashi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ph_solo(t_man *man)
 	long long	start;
 
 	start = get_mtime();
-	printf("%lld %d %s\n", start, 0, PFORK);
-	printf("%lld %d %s\n", start + man->time_to_die, 0, PDIED);
+	printf("%lld %d %s\n", start, 1, PFORK);
+	printf("%lld %d %s\n", start + man->time_to_die, 1, PDIED);
 	return (0);
 }
 
