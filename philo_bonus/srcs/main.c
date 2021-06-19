@@ -44,6 +44,7 @@ void	ph_def(t_philo *ph)
 	ph->number_of_philosophers = 0;
 	ph->number_of_times_each_philosopher_must_eat = 0;
 	ph->is_must_eat = 0;
+	ph->men = NULL;
 }
 
 int	main(int argc, char *argv[])
