@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: syamashi <syamashi@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/13 12:48:41 by syamashi          #+#    #+#             */
-/*   Updated: 2021/06/17 12:07:15 by syamashi         ###   ########.fr       */
+/*   Updated: 2021/06/21 18:10:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,11 @@ void	ph_sem_close(t_philo *ph)
 	}
 }
 
-void	ph_def(t_philo *ph)
-{
-	int	i;
-
-	ph->is_must_eat = 0;
-	i = -1;
-	while (++i < 210)
-	{
-		ph->eat_cnt[i] = 0;
-	}
-	ph->number_of_philosophers = 0;
-	ph->number_of_times_each_philosopher_must_eat = 0;
-	ph->is_must_eat = 0;
-	ph->men = NULL;
-}
-
 int	main(int argc, char *argv[])
 {
 	t_philo	ph;
 
-	ph_def(&ph);
+	ph = (t_philo){};
 	if (ph_init_arg(argc, argv, &ph))
 		return (all_free(&ph));
 	if (ph_init_sem(&ph))
